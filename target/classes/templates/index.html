@@ -1,0 +1,98 @@
+<meta charset="utf8">
+
+<div id="logo_background">
+
+    <img src="/images/logo_background.jpg">
+
+    <div id="dark_blur"></div>
+    </img>
+</div>
+<div id="container">
+    <div id="logo">
+        <div id="text">β</div>
+        <div id="site">βetatravel.ru</div>
+    </div>
+    <div id="border"></div>
+    <div id="slog">
+        <h2>Автовокзалы России</h2>
+        Купить билеты на автобус по России
+        удобно, выгодно и быстро
+    </div>
+    <div id="input_group">
+        <input class="input_field from_point" type="" name="" placeholder="Откуда">
+        <div id="predict_input"></div>
+        </input>
+
+        <input class="input_field to_point" type="" name="" placeholder="Куда">
+        <div id="predict_input_to"></div>
+        </input>
+
+
+        <input class="input_field date" type="date" value="" placeholder="Дата"/>
+        <div class="people_count" type="" name="">
+            <div class="old">
+                <div class="old_param">
+                    <div class="circle" onclick="changeCount('old',-1)">-</div>
+                    <div id="old_count">1</div>
+                    Взрослые
+                    <div class="circle" onclick="changeCount('old',1)">+</div>
+                </div>
+            </div>
+            <div class="young">
+                <div class="old_param">
+                    <div class="circle" onclick="changeCount('young',-1)">-</div>
+                    <div id="young_count">0</div>
+                    Дети
+                    <div class="circle" onclick="changeCount('young',1)">+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" onclick="search()">
+        Найти рейсы
+    </div>
+</div>
+<div id="next_back">
+    <div id="application_block">
+        <div id="info">
+            <h1>Скачивайте приложение betatravel.ru</h1>
+            Для покупки билетов достаточно зайти в приложение.
+        </div>
+        <img id="smrtphns" src="/images/smartphones.png">
+        <img id="os" src="/images/os.png">
+    </div>
+</div>
+<div id="footer">
+    <div class="mainblock">
+        <div class="footer_block">
+            <div class="footer_row">Поиск билетов</div>
+            <div class="footer_row">Автовокзалы</div>
+            <div class="footer_row">Расписание</div>
+            <div class="footer_row">Новости</div>
+        </div>
+        <div class="footer_block">
+            <div class="footer_row">Контакты и услуги</div>
+            <div class="footer_row">Наши партнеры</div>
+            <div class="footer_row">Частые вопросы</div>
+            <div class="footer_row">Возврат билетов</div>
+        </div>
+        <div class="footer_block">
+
+            <div class="footer_row">Обратная связь</div>
+            <div class="footer_row">Расписание</div>
+            <div class="footer_row">Справочная информация</div>
+            <div class="footer_row">Расписание электропоездов</div>
+        </div>
+        <div class="footer_block">
+            <div class="footer_row">Информация по безопасности</div>
+            <div class="footer_row">Политика конфиденциальности</div>
+            <div class="footer_row">Проверить билет</div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/script/main.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/main.css">

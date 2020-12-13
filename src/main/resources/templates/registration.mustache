@@ -1,0 +1,223 @@
+<meta charset="utf8">
+
+<div id="logo_background">
+
+    <img src="/images/logo_background.jpg">
+
+    <div id="dark_blur"></div>
+    </img>
+</div>
+<div id="container">
+    <div id="logo">
+        <div id="text">β</div>
+        <div id="site">βetatravel.ru</div>
+    </div>
+    <div id="border"></div>
+    <div id="slog">
+        <h2>Автовокзалы России</h2>
+        Купить билеты на автобус по России
+        удобно, выгодно и быстро
+    </div>
+    <div id="input_group">
+        <input class="input_field from_point" type="" name="" placeholder="Откуда">
+        <div id="predict_input"></div>
+        </input>
+
+        <input class="input_field to_point" type="" name="" placeholder="Куда">
+        <div id="predict_input_to"></div>
+        </input>
+
+
+        <input class="input_field date" type="date" value="" placeholder="Дата"/>
+        <div class="people_count" type="" name="">
+            <div class="old">
+                <div class="old_param">
+                    <div class="circle" onclick="changeCount('old',-1)">-</div>
+                    <div id="old_count">1</div>
+                    Взрослые
+                    <div class="circle" onclick="changeCount('old',1)">+</div>
+                </div>
+            </div>
+            <div class="young">
+                <div class="old_param">
+                    <div class="circle" onclick="changeCount('young',-1)">-</div>
+                    <div id="young_count">0</div>
+                    Дети
+                    <div class="circle" onclick="changeCount('young',1)">+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" onclick="search()">
+        Найти рейсы
+    </div>
+</div>
+<div id="next_back">
+    <div class="success">Вы успешно зарегистрировались<br>Через 5 сек. будете перенаправлены на главную страницу</div>
+    <div id="application_block">
+        <div class="passagers_input">
+            {{#old_inputs}}
+                <div class="pas_block">
+                    <div style="font-family: Montserrat;">Пассажир №{{.}}:</div>
+                    <input type="text" placeholder="Фамилия" class='surname{{.}}'>
+                    <input type="text" placeholder="Имя" class='name{{.}}'>
+                    <input type="text" class="phone telephone{{.}}" placeholder="Номер телефона">
+                </div>
+            {{/old_inputs}}
+
+            {{#young_inputs}}
+                <div class="pas_block">
+                    <div style="font-family: Montserrat;">Ребенок №{{.}}:</div>
+                    <input type="text" placeholder="Фамилия" class='childsurname{{.}}'>
+                    <input type="text" placeholder="Имя" class='childname{{.}}'>
+                </div>
+            {{/young_inputs}}
+
+        </div>
+        <div class="finalprice">
+            <div class="from finprval">Откуда:<br>{{from}}</div>
+            <div class="to finprval">Куда:<br>{{to}}</div>
+            <div class="date finprval">Когда:<br>{{date}}</div>
+            <div class="price finprval">Цена:<br>{{price}} руб.</div>
+        </div>
+
+        <div class='ordered' onclick="createorder()">Заказать</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="/script/main.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
+<script>
+    var old_count = {{old_count}};
+    var young_count = {{young_count}};
+    var tripsid = {{travelid}};
+
+    $(".phone").mask("+7(999)999-9999");
+
+    function createorder() {
+        var users = "";
+
+        for (var i = 0; i < old_count; ++i) {
+            var name = $(".name" + (i + 1)).val();
+            var surname = $(".surname" + (i + 1)).val();
+            var telephone = $(".telephone" + (i + 1)).val();
+            users += tripsid + ",";
+            users += name + ",";
+            users += surname + ",";
+            if (young_count == 0) users += telephone; else users += telephone + ",";
+
+        }
+
+        for (var i = 0; i < young_count; ++i) {
+            var name = $(".childname" + (i + 1)).val();
+            var surname = $(".childsurname" + (i + 1)).val();
+
+            users += tripsid + ",";
+            users += name + ",";
+            users += surname + ",";
+            if (i < young_count - 1) users += "-,"; else users += "-";
+        }
+
+        console.log(users);
+        $.ajax({
+            url: "/registration",
+            method: "POST",
+            data: {data: users},
+            success: function (data) {
+                if (data == "success") {
+                    $(".success").css("visibility", "visible");
+                    $("#application_block").css("visibility", "hidden");
+                    setTimeout(function () {
+                        window.location.href = "/";
+                    }, 5000);
+                }
+            }
+        });
+
+    }
+
+</script>
+<style>
+    body {
+        overflow-y: scroll;
+    }
+
+    .ordered:hover {
+        cursor: pointer;
+        background: #cf0844;
+    }
+
+    .success {
+        visibility: hidden;
+        font-family: Montserrat;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .ordered {
+
+        width: 180px;
+        height: 50px;
+        background: #f6175a;
+        color: #fff;
+        text-align: center;
+        margin: 0px auto;
+        font-family: Montserrat;
+        font-size: 17px;
+
+        line-height: 50px;
+        border-radius: 6px;
+
+    }
+
+    #application_block {
+
+    }
+
+    .pas_block {
+        margin-bottom: 40px;
+    }
+
+    .finprval {
+        width: 100%;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 20px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        color: #222;
+        font-weight: bold;
+    }
+
+    .passagers_input {
+
+        width: 75%;
+    }
+
+    .passagers_input input {
+        font-family: Montserrat;
+        font-size: 20px;
+        width: 30%;
+    }
+
+
+    .finprval:not(:last-child) {
+        border-bottom: 1px solid #999;
+    }
+
+    .finalprice {
+        width: 200px;
+        height: 300px;
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #ffecda;
+        box-shadow: 5px 5px 15px black;
+        border-radius: 5px;
+        border: 1px solid #888;
+    }
+</style>

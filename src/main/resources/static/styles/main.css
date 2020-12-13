@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    user-select: none;
+}
+
+.predict_val_to {
+    font-family: Montserrat;
+
+    padding-bottom: 10px;
+}
+
+.predict_val_to:hover {
+    cursor: pointer;
+    background: #5d76cb;
+}
+
+.predict_val_to:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+}
+
+#predict_input_to {
+    visibility: hidden;
+    position: absolute;
+    background: white;
+    width: 180px;
+    margin-top: 5px;
+    max-height: 150px;
+    border: 1px solid #000;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: center;
+    font-size: 17px;
+    margin-left: 198px;
+
+}
+
+.predict_val {
+    font-family: Montserrat;
+
+    padding-bottom: 10px;
+}
+
+.predict_val:hover {
+    cursor: pointer;
+    background: #5d76cb;
+}
+
+.predict_val:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+}
+
+#predict_input {
+    visibility: hidden;
+    position: absolute;
+    background: white;
+    width: 180px;
+    margin-top: 5px;
+    max-height: 150px;
+    border: 1px solid #000;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: center;
+    font-size: 17px;
+
+}
+
+#footer {
+    background: #202a3c;
+    position: absolute;
+    width: 100%;
+    margin-top: 350px;
+    z-index: 5;
+}
+
+#next_back #application_block {
+    width: 1000px;
+    margin: 50px auto;
+    position: relative;
+    min-height: 200px;
+
+}
+
+#next_back #application_block #smrtphns {
+
+    width: 300px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#next_back #application_block #os {
+    position: absolute;
+    left: 130px;
+    top: 170px;
+}
+
+#next_back #application_block #info {
+    font-family: Montserrat;
+    top: 20px;
+    width: 700px;
+    text-align: center;
+    position: absolute;
+}
+
+body {
+    margin: 0px;
+}
+
+#next_back {
+    background: #FFF;
+
+    position: absolute;
+    width: 100%;
+    min-height: 400px;
+    z-index: 4;
+
+}
+
+#site {
+    position: absolute;
+    color: #eee;
+    font-family: Montserrat;
+    font-size: 30px;
+    top: 17px;
+    left: 100px;
+}
+
+#search {
+    width: 180px;
+    height: 50px;
+    background: #f6175a;
+    color: #fff;
+    text-align: center;
+    margin: 50px auto;
+    font-family: Montserrat;
+    font-size: 17px;
+
+    line-height: 50px;
+    border-radius: 6px;
+}
+
+#search:hover {
+    cursor: pointer;
+    background: #cf0844;
+}
+
+#old_count, #young_count {
+    position: absolute;
+
+}
+
+#old_count {
+    top: -10px;
+    left: 100px;
+}
+
+#young_count {
+    left: 100px;
+    top: 40px;
+}
+
+.circle:hover {
+    cursor: pointer;
+    background: #f6175a;
+}
+
+.circle {
+    display: inline-block;
+    margin: 0px 10px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+
+    line-height: 16px;
+    border-radius: 50%;
+    color: black;
+}
+
+.old_param {
+    color: #EEE;
+    display: inline-block;
+    width: 100%;
+    /* border: 1px solid #00F; */
+    text-align: center;
+    font-family: "Tahoma";
+    font-size: 20px;
+    margin-top: 10px;
+
+}
+
+#container #input_group .people_count .old {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid #0F0; */
+}
+
+#container #input_group .people_count {
+    width: 200px;
+    min-height: 100%;
+    /* border: 1px solid #F00; */
+    position: absolute;
+    left: 597px;
+    top: 0px;
+
+}
+
+#logo {
+    width: 90%;
+
+    margin: 0px auto;
+    min-height: 55px;
+    padding-top: 10px;
+}
+
+#container #slog {
+    width: 500px;
+    /* border:1px solid #555; */
+    margin: 30px auto;
+    color: #eee;
+    text-align: center;
+    font-family: "Tahoma";
+    font-size: 20px;
+}
+
+#container #border {
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #555;
+    margin-top: 20px;
+}
+
+#container #input_group .input_field {
+    width: 180px;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 10px;
+    /* border: 2px solid #5d76cb; */
+    margin-right: 15px;
+    background: #EEE;
+    font-family: Montserrat;
+}
+
+
+.date:hover {
+    cursor: pointer;
+}
+
+#container #input_group input:focus {
+    outline: none !important;
+}
+
+#logo #text {
+    color: #EEE;
+    font-size: 33px;
+    background: #5d76cb;
+    float: left;
+    padding: 8px;
+    border-radius: 2px;
+    /* border: 1px solid #555; */
+
+}
+
+#logo #full_name {
+    color: #EEE;
+    font-size: 17px;
+    float: right;
+    padding: 8px;
+    border-radius: 2px;
+    /* border: 1px solid #555; */
+    font-family: Montserrat;
+    margin-top: 8px;
+
+}
+
+
+#logo_background {
+    width: 100%;
+    position: relative;
+    margin: 0px;
+    position: absolute;
+    z-index: 1;
+
+}
+
+#logo_background img {
+    width: 100%;
+
+}
+
+#logo_background #dark_blur {
+    background: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+}
+
+#container {
+    width: 940px;
+    min-height: 500px;
+    /* border:1px solid #F00; */
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+#container #input_group {
+    /* border:1px solid #fff; */
+    width: 85%;
+    margin: 20px auto;
+    height: 100px;
+    position: relative;
+}
+
+.mainblock {
+    width: 100%;
+
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.footer_block {
+    display: inline-block;
+    width: 25%;
+    margin-right: -6px;
+    vertical-align: top;
+
+    color: #EEE;
+
+
+}
+
+.footer_row{
+    margin-bottom: 15px;
+    font-family: Montserrat;
+    font-size: 18px;
+
+}

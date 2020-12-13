@@ -1,0 +1,248 @@
+<meta charset="utf8">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<div id="logo_background">
+
+    <img src="/images/logo_background.jpg">
+
+    <div id="dark_blur"></div>
+    </img>
+</div>
+<div id="container">
+    <div id="logo">
+        <div id="text">β</div>
+        <div id="site">βetatravel.ru</div>
+        <div id="full_name" style="  font-size: 22px;">{{fullname}}</div>
+        <div class="exit" onclick="exit()">Выход</div>
+    </div>
+    <div id="border"></div>
+    <div id="slog">
+        <h2>Панель администратора</h2>
+    </div>
+    <div class="admin_panel">
+        <table width="100%" cellpadding="5" class="input_table">
+            <tr>
+                <td><input type="text" placeholder="Откуда" class="from" value="">
+                    <div id="predict_input" style="left:5px;"></div>
+                    </input>
+                </td>
+                <td><input type="text" placeholder="Куда" class="to" value="">
+                    <div id="predict_input_to" style="left:100px;"></div>
+                    </input>
+                </td>
+                <td><input type="date" placeholder="Дата" class="date"></td>
+                <td><input type="time" placeholder="" class="time"></td>
+            </tr>
+        </table>
+
+
+        <div id="sendbtn" onclick="send()">
+            Отправить
+        </div>
+
+    </div>
+
+
+</div>
+<div class="table_main">
+    <table width="100%" cellpadding="5">
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Откуда (город)</th>
+            <th>Откуда (регион)</th>
+            <th>Куда (город)</th>
+            <th>Куда (регион)</th>
+            <th>Дата отправления</th>
+            <th>Дата прибытия</th>
+            <th>Время отправления</th>
+            <th>Время прибытия</th>
+            <th>Время в пути</th>
+            <th>Расстояние</th>
+            <th>Цена<br>(1 билет)</th>
+        </tr>
+        {{#fullinfo}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{telephone}}</td>
+                <td>{{from_city}}</td>
+                <td>{{from_region}}</td>
+                <td>{{to_city}}</td>
+                <td>{{to_region}}</td>
+                <td>{{start_date}}</td>
+                <td>{{end_date}}</td>
+                <td>{{start_time}}</td>
+                <td>{{end_time}}</td>
+                <td>{{travel_time}}</td>
+                <td>{{distance}} км.</td>
+                <td>{{price}} руб.</td>
+            </tr>
+        {{/fullinfo}}
+
+    </table>
+</div>
+
+<script>
+    window.onload = function () {
+
+        $.ajax({
+            url: "/getfullinfo",
+            method: "GET"
+        });
+    }
+
+    $('.to').on('input', function () {
+        $("#predict_input_to").css("visibility", "visible");
+        var text = $(this).val();
+        $.ajax({
+            url: "/predinput",
+            method: "POST",
+            data: {text: text},
+            success: function (data) {
+                $(".predict_val_to").remove();
+                for (let i = 0; i < data.length; ++i) {
+                    $('#predict_input_to').append('<div class="predict_val_to">' + data[i].name + '</div>');
+
+                    $("body").on("click", ".predict_val_to", function () {
+                        $(".to").val($(this).html());
+                        $("#predict_input_to").css("visibility", "hidden");
+                    });
+
+                }
+            }
+        });
+    });
+
+    $('.from').on('input', function () {
+        $("#predict_input").css("visibility", "visible");
+        var text = $(this).val();
+        $.ajax({
+            url: "/predinput",
+            method: "POST",
+            data: {text: text},
+            success: function (data) {
+                $(".predict_val").remove();
+                for (let i = 0; i < data.length; ++i) {
+                    $('#predict_input').append('<div class="predict_val">' + data[i].name + '</div>');
+
+                    $("body").on("click", ".predict_val", function () {
+                        $(".from").val($(this).html());
+                        $("#predict_input").css("visibility", "hidden");
+                    });
+
+                }
+            }
+        });
+    });
+
+
+    function send() {
+        var from = $(".from").val();
+        var to = $(".to").val();
+        var date = $(".date").val();
+        var time = $(".time").val();
+
+        $.ajax({
+            url: "/adminpost",
+            method: "POST",
+            data: {from: from, to: to, date: date, time: time},
+            success: function (data) {
+
+            }
+        });
+    }
+
+    function exit(){
+        $.ajax({
+            url: "/exit",
+            method: "POST",
+            success: function (data) {
+                window.location.href = "/admin";
+            }
+        });
+    }
+</script>
+<style>
+
+    #full_name{
+        position: absolute;
+        right: 0px;
+        font-family: Montserrat;
+
+    }
+
+    .exit:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .exit{
+        font-family: Montserrat;
+        color:red;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        font-size: 15px;
+        padding:3px;
+    }
+
+    #sendbtn:hover {
+        cursor: pointer;
+        background: #cf0844;
+    }
+
+    #sendbtn {
+        width: 180px;
+        height: 50px;
+        background: #f6175a;
+        color: #fff;
+        text-align: center;
+        margin: 0px auto;
+        margin-top: 100px;
+        font-family: Montserrat;
+        font-size: 17px;
+        line-height: 50px;
+        border-radius: 6px;
+    }
+
+    .input_table {
+        font-family: Montserrat;
+
+    }
+
+    .input_table input{
+        font-size: 22px;
+        border-radius: 5px;
+    }
+
+
+    .table_main::-webkit-scrollbar { width: 0; }
+    .table_main {
+        position: relative;
+        margin: 0px auto;
+        z-index: 10;
+        width: 95%;
+        height: 550px;
+        overflow-y: scroll;
+    }
+
+    .table_main table {
+        border-collapse: collapse;
+        color: #eee;
+        font-family: Montserrat;
+        font-size: 18px;
+        text-align: center;
+
+    }
+
+
+    .table_main table tr:not(:last-child) {
+        border-bottom: 1px solid #EEE;
+        line-height: 30px;
+    }
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
