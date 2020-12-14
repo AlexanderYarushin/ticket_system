@@ -149,7 +149,10 @@
             method: "POST",
             data: {from: from, to: to, date: date, time: time},
             success: function (data) {
-
+                $(".from").val("");
+                $(".to").val("");
+                $(".date").val("");
+                $(".time").val("");
             }
         });
     }

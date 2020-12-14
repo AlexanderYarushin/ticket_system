@@ -104,21 +104,24 @@
             var name = $(".name" + (i + 1)).val();
             var surname = $(".surname" + (i + 1)).val();
             var telephone = $(".telephone" + (i + 1)).val();
-            users += tripsid + ",";
-            users += name + ",";
-            users += surname + ",";
-            if (young_count == 0) users += telephone; else users += telephone + ",";
+            if(name != "" && surname != "" && telephone != "") {
+                users += tripsid + ",";
+                users += name + ",";
+                users += surname + ",";
+                if (young_count == 0) users += telephone; else users += telephone + ",";
+            }
 
         }
 
         for (var i = 0; i < young_count; ++i) {
             var name = $(".childname" + (i + 1)).val();
             var surname = $(".childsurname" + (i + 1)).val();
-
+            if(name != "" && surname != ""){
             users += tripsid + ",";
             users += name + ",";
             users += surname + ",";
             if (i < young_count - 1) users += "-,"; else users += "-";
+            }
         }
 
         console.log(users);
@@ -127,12 +130,18 @@
             method: "POST",
             data: {data: users},
             success: function (data) {
+
                 if (data == "success") {
+                    $(".success").html("Вы успешно зарегистрировались<br>Через 5 сек. будете перенаправлены на главную страницу");
                     $(".success").css("visibility", "visible");
                     $("#application_block").css("visibility", "hidden");
                     setTimeout(function () {
                         window.location.href = "/";
                     }, 5000);
+                }
+                if(data == "error"){
+                    $(".success").html("Ошибка, неверные данные");
+                    $(".success").css("visibility", "visible");
                 }
             }
         });

@@ -132,7 +132,7 @@ public class AdminPanel {
                 _from.getLongitude(),
                 _to.getLatitude(),
                 _to.getLongitude()));
-        distance += random.nextInt((int) distance / 2);
+     //   distance += random.nextInt((int) distance / 2);
 
         double litresOnDistKm = (25.0 / 100.0) * distance;
         double collection = 5;

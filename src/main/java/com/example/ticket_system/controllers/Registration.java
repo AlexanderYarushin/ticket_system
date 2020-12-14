@@ -59,8 +59,8 @@ public class Registration {
     @PostMapping("/registration")
     @ResponseBody
     public String Register(@RequestParam(required=false,name="data") List<String> data){
-
-        if(data.isEmpty()) return "Ошибка. Данные не заполнены";
+        System.out.println(data.size());
+        if(data.isEmpty()) return "error";
 
         for(int i = 0; i < data.size(); i+=4){
             PurchaseTrip tmp = new PurchaseTrip();
